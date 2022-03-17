@@ -1,4 +1,48 @@
 <div class="jumbotron">
     <h2>Componente Binding</h2>
     <hr>
+    <h3><u>Data Binding</u></h3>
+    <br>
+    <!-- ---------------------------------- -->
+    <h4>Interpolación</h4>
+    <p>La interpolación de variable permite mostar valores en la vista desde variables de la clase.</p>
+    <p>La comunicación es desde la clase y hacia la vista del componente.</p>
+    <p>{{ 3 + 4 }}</p>
+    <p>{{ mensaje }}</p>
+    <hr>
+
+    <!-- ----------------------------------- -->
+    <h4>Property Binding</h4>
+    <p>Permite que las propiedades de los elementos HTML tomen valores desde la clase del componente.</p>
+    <p>La comunicación es desde la clase y hacia la vista del componente.</p>
+
+    <input type="text" value="123"> <br>
+    <input type="text" value="valor1"> <br>
+    <input type="text" value="{{valor1}}"> {{ valor1 }}<br>
+    <input type="text" [value]="valor2"> {{ valor2 }} <br>
+    <hr>
+
+    <!-- --------------------------------------- -->
+    <h4>Event Binding</h4>
+    <p>Hace que los eventos que suceden en la vista realicen acciones en la clase.</p>
+    <p>La comunicación en este caso, es desde la vista hacia la clase.</p>
+
+    <button class="btn btn-success my-2" (click)="contador=contador+1">Contar {{contador}}</button>
+    <hr>
+
+    <!-- ---------------------------------------- -->
+    <h4>Double Data Binding (2-way data binding)</h4>
+    <p>Hace que la comunicacion entre vista y clase sea en dos sentidos</p>
+
+    <h5>Manual</h5>
+    <p>Se realiza aplicando property binding y event binding de manera simultánea.</p>
+    <input type="text" [value]="valor3" (input)="modificar($event)"> {{ valor3 }} <br>
+    <br>
+
+    <h5>Automático - [(ngModel)]</h5>
+    <p>Simplifica la tarea utilizando la directiva ngModel y aplicando property y event binding a la misma.</p>
+    <p>(Necesita la carga del modulo FormsModule en el appModule)</p>
+    <input type="text" [(ngModel)]="valor4"> {{valor4}} <br>
+
+
 </div>
