@@ -1,4 +1,34 @@
 <div class="jumbotron">
     <h2>Componente Atributos</h2>
     <hr>
+
+    <!-- ------------------------------------------- -->
+    <h4><u>[ngStyle]</u></h4>
+    <br>
+
+    <button class="btn btn-warning mb-3" (click)="estado1=!estado1">Cambiar fondo</button>
+
+    <!-- <p style="background-color: blue; color: white; padding: 10px; border-radius: 10px;"> -->
+    <!-- <p [ngStyle]="{backgroundColor: estado1?'blue':'crimson', color: 'white', padding: '10px', borderRadius: '10px'}"> -->
+    <p [ngStyle]="cambiarPropiedad(estado1)">
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aut quis laboriosam sint, distinctio nam pariatur accusamus id quam ex consequatur voluptas animi ipsa impedit tempore dolor, debitis, voluptatem praesentium. Commodi.
+    </p>
+    <hr>
+
+    <!-- -------------------------------------------------------- -->
+    <h4><u>[ngClass]</u></h4>
+    <br>
+
+    <button class="btn btn-warning mb-3" (click)="estado2=!estado2">Cambiar fondo</button>
+
+    <!-- <p class="btn btn-primary"> -->
+    <!-- <p [ngClass]="{btn : true, 'btn-primary': estado2, 'btn-danger': !estado2}"> -->
+    <p [ngClass]="cambiarClase(estado2)">
+
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis quos at possimus totam eum pariatur suscipit. Deleniti, saepe praesentium, ex minus nobis, similique veritatis sequi esse eveniet ab fuga voluptatum.
+    </p>
+
+
+
+
 </div>
