@@ -27,7 +27,22 @@
 
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis quos at possimus totam eum pariatur suscipit. Deleniti, saepe praesentium, ex minus nobis, similique veritatis sequi esse eveniet ab fuga voluptatum.
     </p>
+    <hr>
 
+    <!-- ------------------------------------------------------------- -->
+    <h4><u>Directivas Personalizadas</u></h4>
+
+    
+    <p [appResaltar]="color" colorBase="orangered">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus laudantium at tempore ipsa doloribus officiis maxime error ducimus quisquam, provident fugiat velit voluptate praesentium tempora possimus temporibus commodi. Quisquam, quia.
+    </p>
+
+    <div>
+        <input type="radio" name="colors" (click)="color='crimson'">ROJIZO
+        <input type="radio" name="colors" (click)="color='blue'">AZUL
+        <input type="radio" name="colors" (click)="color='tomato'">TOMATE
+        <input type="radio" name="colors" (click)="color=''" checked>NINGUN
+    </div>
 
 
 

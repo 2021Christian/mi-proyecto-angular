@@ -7,6 +7,7 @@ import { BindingComponent } from './componentes/binding/binding.component';
 import { EstructuraComponent } from './componentes/estructura/estructura.component';
 import { AtributosComponent } from './componentes/atributos/atributos.component';
 import { FormulariosComponent } from './componentes/formularios/formularios.component';
+import { ResaltarDirective } from './directivas/resaltar.directive';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { FormulariosComponent } from './componentes/formularios/formularios.comp
     BindingComponent,
     EstructuraComponent,
     AtributosComponent,
-    FormulariosComponent
+    FormulariosComponent,
+    ResaltarDirective
   ],
   imports: [
     BrowserModule,

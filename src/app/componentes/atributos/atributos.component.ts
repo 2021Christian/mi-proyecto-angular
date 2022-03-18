@@ -9,6 +9,8 @@ export class AtributosComponent implements OnInit {
 
   estado1:boolean = true;
   estado2:boolean = true;
+  color:string = '';
+
 
   constructor() { }
 
