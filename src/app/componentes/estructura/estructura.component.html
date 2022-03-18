@@ -2,4 +2,93 @@
     <h2>Componente Estructura</h2>
     <hr>
 
+    <!-- ------------------------------------------- -->
+    <h4><u>*ngIf</u></h4>
+    <p>Evalúa determinada condición, y actúa sobre el elemento HTML</p>
+    <br>
+
+    <button class="btn btn-success mb-3" (click)="mostrar=!mostrar"> {{ mostrar? 'Ocultar':'Mostrar' }} </button>
+    
+    <p *ngIf="mostrar; else oculto" class="alert alert-info">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. In quidem praesentium ratione eos suscipit id facilis, dolor cum sed. Cumque nobis eum cupiditate exercitationem explicabo mollitia minima obcaecati fuga dignissimos.
+    </p>
+
+    <!-- <h4 *ngIf="!mostrar" class="alert alert-warning">Elemento removido</h4>-->
+
+    <ng-template #oculto>
+        <h4 *ngIf="!mostrar" class="alert alert-warning">
+            Elemento removido
+        </h4>
+    </ng-template>
+    <br>
+    <hr>
+
+    <!-- ---------------------------------------------------------------------- -->
+    <h4><u>*ngFor</u></h4>
+    <p>Permite iterar estructuras recorriendo arrays de la clase</p>
+    <br>
+
+    <h5><u>Array de Strings</u></h5>
+    <br>
+    <!-- <ul>
+        <li>{{ personas[0] }}</li>
+        <li>{{ personas[1] }}</li>
+        <li>{{ personas[2] }}</li>
+        <li>{{ personas[3] }}</li>
+    </ul>  -->
+
+    <ul>
+        <li *ngFor="let persona of personas; index as i" >{{ (i+1) + " - " + persona }}</li>
+    </ul> 
+    <br>
+
+    <h5><u>Array de Objetos</u></h5>
+    
+    <button class="btn btn-success my-3" (click)="agregarAlumno()">Crear Alumno</button>
+
+    <ng-template #ningun>
+        <h4 class="alert alert-danger">No existen alumnos</h4>
+    </ng-template>
+    <div *ngIf="alumnos.length; else ningun">
+        <ul>
+            <li *ngFor="let alumno of alumnos; index as i" >
+                <!-- <pre>{{ alumno | json }}</pre> -->
+                {{ (i+1) + " - " + alumno.nombre + " " + alumno.apellido }}
+            </li>
+        </ul> 
+        <br>
+        
+        <div class="table-responsive">
+            <table class="table table-dark">
+                <tr>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Edad</th>
+                    <th>Curso</th>
+                    <th>Foto</th>
+                </tr>
+                <tr *ngFor="let alumno of alumnos">
+                    <td>{{ alumno.nombre }}</td>
+                    <td>{{ alumno.apellido }}</td>
+                    <td>{{ alumno.edad }}</td>
+                    <td>{{ alumno.curso ? 'Si' : 'No' }}</td>
+                    <td><img width="50px" [src]="alumno.foto" alt="Foto de {{alumno.nombre + ' ' + alumno.apellido}}"></td>
+                </tr>
+            </table>
+        </div>
+        <br>
+        <div *ngFor="let alumno of alumnos; index as i" class="media alert alert-info">
+            <img width="200px" [src]="alumno.foto" class="mr-3" alt="Foto de {{alumno.nombre + ' ' + alumno.apellido}}">
+            <div class="media-body">
+                <h4 class="mt-0"><u>Alumno {{ i+1 }}</u></h4>
+                <br>
+                <p>Nombre: <b>{{ alumno.nombre }} {{ alumno.apellido }}</b></p>
+                <p>Edad: <i>{{ alumno.edad }} años</i></p>
+                Hizo el curso? <input type="checkbox" [(ngModel)]="alumno.curso">
+                <button class="btn btn-danger ml-4" (click)="borrarAlumno(i)">Eliminar</button>
+            </div>
+        </div>
+    </div>
+
+    
 </div>

@@ -6,3 +6,11 @@
 hr {
     background-color: #eee;
 }
+
+pre {
+    color: white;
+}
+
+.table td, .table th {
+    vertical-align:middle;
+}
