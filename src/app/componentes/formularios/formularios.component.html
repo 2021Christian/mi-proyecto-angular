@@ -1,4 +1,292 @@
 <div class="jumbotron">
     <h2>Componente Formularios</h2>
     <hr>
+    <br>
+
+    <!-- -------------------------------------------------------- -->
+
+    <h4><u>Template Driven</u></h4>
+    <br>
+
+    <form #loginform="ngForm" autocomplete="off" (ngSubmit)="enviar(loginform)">
+        <!-- campo nombre -->
+        <div class="form-group">
+
+            <label for="nombre">Nombre</label>
+            <input 
+                #nombreControl="ngModel"
+                type="text" 
+                id="nombre" 
+                class="form-control"
+                [(ngModel)]="formu.nombre"
+                name="nombre"
+                required
+                minlength="3"
+            >
+            <!-- mensajes de validación -->
+            <div *ngIf="nombreControl.invalid && nombreControl.errors && nombreControl.dirty" class="alert alert-danger mt-1">
+                <div *ngIf="nombreControl.errors['required']" >Campo requerido</div>
+                <div *ngIf="nombreControl.errors['minlength']">Este campo debe poseer al menos 3 caracteres</div>
+            </div>
+
+        </div>
+
+
+        <!-- campo apellido -->
+        <div class="form-group">
+
+            <label for="apellido">Apellido</label>
+            <input 
+                #apellidoControl="ngModel"
+                type="text" 
+                id="apellido" 
+                class="form-control"
+                [(ngModel)]="formu.apellido"
+                name="apellido"
+                required
+                minlength="3"
+            >
+            <!-- mensajes de validación -->
+            <div *ngIf="apellidoControl.invalid && apellidoControl.errors && apellidoControl.dirty" class="alert alert-danger mt-1">
+                <div *ngIf="apellidoControl.errors['required']" >Campo requerido</div>
+                <div *ngIf="apellidoControl.errors['minlength']">Este campo debe poseer al menos 3 caracteres</div>
+            </div>
+
+        </div>
+
+        <!-- campo edad -->
+        <div class="form-group">
+
+            <label for="edad">Edad</label>
+            <input 
+                #edadControl="ngModel"
+                type="number" 
+                id="edad" 
+                class="form-control"
+                [(ngModel)]="formu.edad"
+                name="edad"
+                required
+            >
+            <!-- mensajes de validación -->
+            <div *ngIf="edadControl.invalid && edadControl.errors && edadControl.dirty" class="alert alert-danger mt-1">
+                <div *ngIf="edadControl.errors['required']" >Campo requerido</div>
+            </div>
+
+        </div>
+
+        <!-- campo email -->
+        <div class="form-group">
+
+            <label for="email">Email</label>
+            <input 
+                #emailControl="ngModel"
+                type="email" 
+                id="email" 
+                class="form-control"
+                [(ngModel)]="formu.email"
+                name="email"
+                required
+                email
+                minlength="5"
+            >
+            <!-- mensajes de validación -->
+            <div *ngIf="emailControl.invalid && emailControl.errors && emailControl.dirty" class="alert alert-danger mt-1">
+                <div *ngIf="emailControl.errors['required']" >Campo requerido</div>
+                <div *ngIf="emailControl.errors['minlength']">Este campo debe poseer al menos 5 caracteres</div>
+                <div *ngIf="emailControl.errors['email']" >Debe ingresar un email válido</div>
+            </div>
+
+        </div>
+
+        <!-- campo password -->
+        <div class="form-group">
+
+            <label for="password">Password</label>
+            <input 
+                #passwordControl="ngModel"
+                type="password" 
+                id="password" 
+                class="form-control"
+                [(ngModel)]="formu.password"
+                name="password"
+                required
+                minlength="8"
+            >
+            <!-- mensajes de validación -->
+            <div *ngIf="passwordControl.invalid && passwordControl.errors && passwordControl.dirty" class="alert alert-danger mt-1">
+                <div *ngIf="passwordControl.errors['required']" >Campo requerido</div>
+                <div *ngIf="passwordControl.errors['minlength']">Este campo debe poseer al menos 8 caracteres</div>
+            </div>
+
+        </div>
+
+        <button class="btn btn-success my-3" [disabled]="loginform.invalid">Enviar</button>
+
+    </form>
+    <br>
+    <hr>
+
+    <!-- ------------------------------------------------------------ -->
+    <h4><u>Reactive Forms</u></h4>
+    <br>
+
+    <form [formGroup]="f" autocomplete="off" (ngSubmit)="enviarRf()">
+
+        <!-- campo nombre -->
+        <div class="form-group">
+
+            <label for="nombre-rf">Nombre</label>
+            <input 
+                type="text" 
+                id="nombre-rf" 
+                class="form-control"
+                formControlName="nombre"
+            >
+            <!-- mensajes de validación -->
+            <div *ngIf="f.controls['nombre'].errors && f.controls['nombre'].dirty" class="alert alert-danger mt-1">
+                <div *ngIf="f.controls['nombre'].errors['required']">Campo requerido</div>
+                <div *ngIf="f.controls['nombre'].errors['conEspacios']">
+                    {{ f.controls['nombre'].errors['conEspacios'] }}
+                </div>
+                <div *ngIf="f.controls['nombre'].errors['minlength']">
+                    Este campo debe poseer al menos {{ f.controls['nombre'].errors['minlength'].requiredLength }} caracteres. Tipeados {{ f.controls['nombre'].errors['minlength'].actualLength }} caracter(es).
+                </div>
+                <div *ngIf="f.controls['nombre'].errors['maxlength']">
+                    Este campo debe poseer como máximo {{ f.controls['nombre'].errors['maxlength'].requiredLength }} caracteres. Tipeados {{ f.controls['nombre'].errors['maxlength'].actualLength }} caracteres.
+                </div>
+            </div>
+
+        </div>
+
+        <!-- campo apellido -->
+        <div class="form-group">
+
+            <label for="apellido-rf">Apellido</label>
+            <input 
+                type="text" 
+                id="apellido-rf" 
+                class="form-control"
+                formControlName="apellido"
+            >
+            <!-- mensajes de validación -->
+            <!-- <div *ngIf="f.controls['apellido'].errors && f.controls['apellido'].dirty" class="alert alert-danger mt-1">
+                <div *ngIf="f.controls['apellido'].errors['required']">Campo requerido</div>
+                <div *ngIf="f.controls['apellido'].errors['minlength']">
+                    Este campo debe poseer al menos {{ f.controls['apellido'].errors['minlength'].requiredLength }} caracteres. Tipeados {{ f.controls['apellido'].errors['minlength'].actualLength }} caracter(es).
+                </div>
+                <div *ngIf="f.controls['apellido'].errors['maxlength']">
+                    Este campo debe poseer como máximo {{ f.controls['apellido'].errors['maxlength'].requiredLength }} caracteres. Tipeados {{ f.controls['apellido'].errors['maxlength'].actualLength }} caracteres.
+                </div>
+            </div> -->
+
+        </div>
+
+        <!-- campo edad -->
+        <div class="form-group">
+
+            <label for="edad-rf">Edad</label>
+            <input 
+                type="number" 
+                id="edad-rf" 
+                class="form-control"
+                formControlName="edad"
+            >
+            <!-- mensajes de validación -->
+            <!-- <div *ngIf="f.controls['edad'].errors && f.controls['edad'].dirty" class="alert alert-danger mt-1">
+                <div *ngIf="f.controls['edad'].errors['required']">Campo requerido</div>
+                <div *ngIf="f.controls['edad'].errors['minlength']">
+                    Este campo debe poseer al menos {{ f.controls['edad'].errors['minlength'].requiredLength }} caracteres. Tipeados {{ f.controls['edad'].errors['minlength'].actualLength }} caracter(es).
+                </div>
+                <div *ngIf="f.controls['edad'].errors['maxlength']">
+                    Este campo debe poseer como máximo {{ f.controls['edad'].errors['maxlength'].requiredLength }} caracteres. Tipeados {{ f.controls['edad'].errors['maxlength'].actualLength }} caracteres.
+                </div>
+            </div> -->
+
+        </div>
+        <div formGroupName="contacto">
+
+            <!-- campo email -->
+            <div class="form-group">
+    
+                <label for="email-rf">Email</label>
+                <input 
+                    type="email" 
+                    id="email-rf" 
+                    class="form-control"
+                    formControlName="email"
+                >
+                <!-- mensajes de validación -->
+                <!-- <div *ngIf="f.controls['email'].errors && f.controls['email'].dirty" class="alert alert-danger mt-1">
+                    <div *ngIf="f.controls['email'].errors['required']">Campo requerido</div>
+                    <div *ngIf="f.controls['email'].errors['minlength']">
+                        Este campo debe poseer al menos {{ f.controls['email'].errors['minlength'].requiredLength }} caracteres. Tipeados {{ f.controls['email'].errors['minlength'].actualLength }} caracter(es).
+                    </div>
+                    <div *ngIf="f.controls['email'].errors['maxlength']">
+                        Este campo debe poseer como máximo {{ f.controls['email'].errors['maxlength'].requiredLength }} caracteres. Tipeados {{ f.controls['email'].errors['maxlength'].actualLength }} caracteres.
+                    </div>
+                </div> -->
+    
+            </div>
+    
+            <!-- campo telefono -->
+            <div class="form-group">
+    
+                <label for="telefono-rf">Telefono</label>
+                <input 
+                    type="tel" 
+                    id="telefono-rf" 
+                    class="form-control"
+                    formControlName="telefono"
+                >
+                <!-- mensajes de validación -->
+                <!-- <div *ngIf="f.controls['telefono'].errors && f.controls['telefono'].dirty" class="alert alert-danger mt-1">
+                    <div *ngIf="f.controls['telefono'].errors['required']">Campo requerido</div>
+                    <div *ngIf="f.controls['telefono'].errors['minlength']">
+                        Este campo debe poseer al menos {{ f.controls['telefono'].errors['minlength'].requiredLength }} caracteres. Tipeados {{ f.controls['telefono'].errors['minlength'].actualLength }} caracter(es).
+                    </div>
+                    <div *ngIf="f.controls['telefono'].errors['maxlength']">
+                        Este campo debe poseer como máximo {{ f.controls['telefono'].errors['maxlength'].requiredLength }} caracteres. Tipeados {{ f.controls['telefono'].errors['maxlength'].actualLength }} caracteres.
+                    </div>
+                </div> -->
+    
+            </div>
+
+        </div>
+
+        <!-- campo password -->
+        <div class="form-group">
+
+            <label for="password-rf">Password</label>
+            <input 
+                type="password" 
+                id="password-rf" 
+                class="form-control"
+                formControlName="password"
+            >
+            <!-- mensajes de validación -->
+            <!-- <div *ngIf="f.controls['password'].errors && f.controls['password'].dirty" class="alert alert-danger mt-1">
+                <div *ngIf="f.controls['password'].errors['required']">Campo requerido</div>
+                <div *ngIf="f.controls['password'].errors['minlength']">
+                    Este campo debe poseer al menos {{ f.controls['password'].errors['minlength'].requiredLength }} caracteres. Tipeados {{ f.controls['password'].errors['minlength'].actualLength }} caracter(es).
+                </div>
+                <div *ngIf="f.controls['password'].errors['maxlength']">
+                    Este campo debe poseer como máximo {{ f.controls['password'].errors['maxlength'].requiredLength }} caracteres. Tipeados {{ f.controls['password'].errors['maxlength'].actualLength }} caracteres.
+                </div>
+            </div> -->
+
+        </div>
+
+        <button class="btn btn-success my-3" [disabled]="f.invalid">Enviar</button>
+
+    </form>
+    <hr>
+    <br>
+
+    <h5><u>Errores del Reactive Form</u></h5>
+    <pre><p>{{ f.controls['nombre'].errors | json }}</p></pre>
+    <br>
+
+    <h5><u>Datos del Reactive Form</u></h5>
+    <pre><p>{{ f.value | json}}</p></pre>
+
 </div>
