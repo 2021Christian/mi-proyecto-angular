@@ -8,6 +8,8 @@ import { EstructuraComponent } from './componentes/estructura/estructura.compone
 import { AtributosComponent } from './componentes/atributos/atributos.component';
 import { FormulariosComponent } from './componentes/formularios/formularios.component';
 import { ResaltarDirective } from './directivas/resaltar.directive';
+import { ClienteComponent } from './componentes/cliente/cliente.component';
+import { ClienteService, ClienteServiceUseClass, ClienteServiceUseExisting } from './servicios/cliente.service';
 
 @NgModule({
   declarations: [
@@ -16,14 +18,24 @@ import { ResaltarDirective } from './directivas/resaltar.directive';
     EstructuraComponent,
     AtributosComponent,
     FormulariosComponent,
-    ResaltarDirective
+    ResaltarDirective,
+    ClienteComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  // providers: [ClienteService],
+  providers: [
+    // {provide: ClienteService, useClass: ClienteService}
+
+    // usando config useClass
+    // {provide: ClienteService, useClass: ClienteServiceUseClass}
+
+    // usando config useExisting
+    {provide: ClienteService, useExisting: ClienteServiceUseExisting}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

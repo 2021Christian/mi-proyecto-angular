@@ -28,6 +28,17 @@
     <p>Permite iterar estructuras recorriendo arrays de la clase</p>
     <br>
 
+    <h5><u>Clientes desde el servicio de clientes</u></h5>
+
+    <button (click)="borrarCliente()">Borrar Cliente</button>
+    
+    <ul>
+        <li *ngFor="let cliente of clientes" >
+            {{ cliente }}
+        </li>
+    </ul>
+    <br>
+
     <h5><u>Array de Strings</u></h5>
     <br>
     <!-- <ul>

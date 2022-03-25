@@ -1,0 +1,16 @@
+<div class="jumbotron">
+    <h2>Componente Cliente</h2>
+    <hr>
+
+    <h5><u>Clientes desde el servicio de clientes</u></h5>
+    <input type="text" [(ngModel)]="client">
+    <button (click)="agregarCliente(client)">Agregar Cliente</button>
+    
+    <ul>
+        <li *ngFor="let cliente of clientes" >
+            {{ cliente }}
+        </li>
+    </ul>
+
+</div>
+

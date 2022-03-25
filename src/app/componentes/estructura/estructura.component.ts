@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ClienteService } from 'src/app/servicios/cliente.service';
 
 @Component({
   selector: 'app-estructura',
@@ -27,11 +28,20 @@ export class EstructuraComponent implements OnInit {
 
   // https://cdn3.iconfinder.com/data/icons/business-avatar-1/512/4_avatar-256.png
 
+  // ---- Cliente Service --------
+  clientes:Array<string> = [];
 
-  constructor() { }
+  constructor(private clienteService:ClienteService) { }
 
   ngOnInit(): void {
+    this.clientes = this.clienteService.getClientes();
   }
+
+  borrarCliente(){
+    this.clienteService.borrarCliente();
+  }
+  // ---- Cliente Service --------
+
 
   borrarAlumno(index:number) {
     this.alumnos.splice(index,1);
@@ -49,6 +59,8 @@ export class EstructuraComponent implements OnInit {
     this.alumnos.push(alumno);
 
   }
+
+
 
 
 }
