@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { verificarEspacios } from 'src/app/validaciones/espacios.validator';
+import { verificarEspacios, verificarEspaciosMensaje } from 'src/app/validaciones/espacios.validator';
 
 @Component({
   selector: 'app-formularios',
@@ -29,7 +29,8 @@ export class FormulariosComponent implements OnInit {
         Validators.required,
         Validators.minLength(this.minCantChrNombre),
         Validators.maxLength(this.maxCantChrNombre),
-        verificarEspacios
+        // verificarEspacios
+        verificarEspaciosMensaje('**Este campo no debe poseer espacios**')
       ])],
       apellido : [''],
       edad : '',
