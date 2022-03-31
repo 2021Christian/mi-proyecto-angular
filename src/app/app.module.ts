@@ -9,7 +9,11 @@ import { AtributosComponent } from './componentes/atributos/atributos.component'
 import { FormulariosComponent } from './componentes/formularios/formularios.component';
 import { ResaltarDirective } from './directivas/resaltar.directive';
 import { ClienteComponent } from './componentes/cliente/cliente.component';
-import { ClienteService, ClienteServiceUseClass, ClienteServiceUseExisting } from './servicios/cliente.service';
+import { ClienteService, 
+  ClienteServiceUseClass, 
+  ClienteServiceUseExisting, 
+  functionClienteServiceUseFactory 
+} from './servicios/cliente.service';
 
 @NgModule({
   declarations: [
@@ -34,7 +38,34 @@ import { ClienteService, ClienteServiceUseClass, ClienteServiceUseExisting } fro
     // {provide: ClienteService, useClass: ClienteServiceUseClass}
 
     // usando config useExisting
-    {provide: ClienteService, useExisting: ClienteServiceUseExisting}
+    // {provide: ClienteService, useExisting: ClienteServiceUseExisting}
+
+    // usando config useFactory
+    // {provide: ClienteService, useFactory: functionClienteServiceUseFactory}
+
+    // usando config useValue
+    {provide: ClienteService, useValue: {
+      clientes: [
+        'Juan_UseValue',
+        'Jose_UseValue',
+        'Maria_UseValue',
+        'Ana_UseValue'
+      ],
+      
+      getClientes() { 
+        return this.clientes;
+      },
+      
+      agregarCliente(cliente:string) { 
+        this.clientes.push(cliente);
+      },
+      
+      borrarCliente() {
+        this.clientes.pop();
+      }
+    } 
+    }
+
   ],
   bootstrap: [AppComponent]
 })
