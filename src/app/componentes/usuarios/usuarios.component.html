@@ -1,0 +1,22 @@
+<div class="jumbotron">
+    <h2>Componente Usuarios</h2>
+    <hr>
+
+    <button class="btn btn-info my-3" (click)="obtener()">GET</button>
+    <button class="btn btn-success my-3 ml-2" (click)="enviar()">POST</button>
+
+    <div class="media alert alert-info" *ngFor="let usuario of usuarios;index as i">
+        <img width="400px" [src]="usuario.foto" alt="foto de {{usuario.nombre}}">
+        <div class="media-body ml-3">
+            <h4><u>Usuario {{i+1}} - ID: {{usuario.id}} - Creado: {{formatFyH(usuario.createdAt)}}</u></h4>
+            <br>
+            <p>Nombre: <b>{{ usuario.nombre }}</b></p>
+            <p>Descripción: <i>{{ usuario.descripcion }}</i></p>
+            <p>Dirección: <u>{{ usuario.direccion }}</u> - <b>{{ usuario.coordenadas }}</b></p>
+            <p>Comentarios: <b><i>{{ usuario.comentarios}}</i></b></p>
+
+            <button class="btn btn-warning my-3" (click)="actualizar(usuario.id)">PUT</button>
+            <button class="btn btn-danger my-3 ml-2" (click)="borrar(usuario.id)">DELETE</button>
+        </div>
+    </div>
+</div>

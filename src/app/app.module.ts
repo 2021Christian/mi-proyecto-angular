@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { BindingComponent } from './componentes/binding/binding.component';
@@ -14,6 +15,8 @@ import { ClienteService,
   ClienteServiceUseExisting, 
   functionClienteServiceUseFactory 
 } from './servicios/cliente.service';
+import { UsuariosComponent } from './componentes/usuarios/usuarios.component';
+import { URL_USUARIOS } from './servicios/usuarios.service';
 
 @NgModule({
   declarations: [
@@ -23,16 +26,19 @@ import { ClienteService,
     AtributosComponent,
     FormulariosComponent,
     ResaltarDirective,
-    ClienteComponent
+    ClienteComponent,
+    UsuariosComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   // providers: [ClienteService],
   providers: [
-    // {provide: ClienteService, useClass: ClienteService}
+    { provide: URL_USUARIOS, useValue: 'https://623e63b2e8fbc4f1626eb58d.mockapi.io/usuarios/' },
+    { provide: ClienteService, useClass: ClienteService }
 
     // usando config useClass
     // {provide: ClienteService, useClass: ClienteServiceUseClass}
@@ -44,7 +50,7 @@ import { ClienteService,
     // {provide: ClienteService, useFactory: functionClienteServiceUseFactory}
 
     // usando config useValue
-    {provide: ClienteService, useValue: {
+    /* {provide: ClienteService, useValue: {
       clientes: [
         'Juan_UseValue',
         'Jose_UseValue',
@@ -64,9 +70,9 @@ import { ClienteService,
         this.clientes.pop();
       }
     } 
-    }
-
+    } */
   ],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }
