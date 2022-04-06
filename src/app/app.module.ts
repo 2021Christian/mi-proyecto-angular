@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {HttpClientModule} from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
+import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { BindingComponent } from './componentes/binding/binding.component';
@@ -17,6 +18,18 @@ import { ClienteService,
 } from './servicios/cliente.service';
 import { UsuariosComponent } from './componentes/usuarios/usuarios.component';
 import { URL_USUARIOS } from './servicios/usuarios.service';
+import { NavbarComponent } from './componentes/navbar/navbar.component';
+
+const routes:Routes = [
+  // {path: '', component: ClienteComponent},
+  {path: '', redirectTo: 'binding', pathMatch: 'full'},
+  {path: 'binding', component: BindingComponent},
+  {path: 'estructura', component: EstructuraComponent},
+  {path: 'atributos', component: AtributosComponent},
+  {path: 'formularios', component: FormulariosComponent},
+  {path: 'cliente', component: ClienteComponent},
+  {path: 'usuarios', component: UsuariosComponent}
+];
 
 @NgModule({
   declarations: [
@@ -27,13 +40,15 @@ import { URL_USUARIOS } from './servicios/usuarios.service';
     FormulariosComponent,
     ResaltarDirective,
     ClienteComponent,
-    UsuariosComponent
+    UsuariosComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule.forRoot(routes, {enableTracing: false} ) //enableTracing: true habilita el debug por consola
   ],
   // providers: [ClienteService],
   providers: [
