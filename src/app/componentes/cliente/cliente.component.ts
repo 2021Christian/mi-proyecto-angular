@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { ClienteService } from 'src/app/servicios/cliente.service';
 
 @Component({
@@ -10,8 +11,15 @@ export class ClienteComponent implements OnInit {
 
   clientes:string[] = [];
   client:string = '';
+  id:string = '';
+  cat:string = '';
 
-  constructor(private clienteService:ClienteService) { }
+  constructor(private clienteService:ClienteService, activatedRoute:ActivatedRoute) { 
+    activatedRoute.params.subscribe(params => {
+      this.id = params['id'];
+      this.cat = params['cat'];
+    })
+  }
 
   ngOnInit(): void {
     this.clientes = this.clienteService.getClientes();

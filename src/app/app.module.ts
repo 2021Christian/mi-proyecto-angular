@@ -28,6 +28,8 @@ const routes:Routes = [
   {path: 'atributos', component: AtributosComponent},
   {path: 'formularios', component: FormulariosComponent},
   {path: 'cliente', component: ClienteComponent},
+  {path: 'cliente/:id', component: ClienteComponent},
+  {path: 'cliente/:id/:cat', component: ClienteComponent},
   {path: 'usuarios', component: UsuariosComponent}
 ];
 
