@@ -13,12 +13,33 @@ export class BindingComponent implements OnInit {
   contador:number = 0;
   valor3:number = 789;
   valor4:number = 321;
+  timer:number = 0;
+  refTimer:any;
 
+  constructor() {
+    console.log('Binding -> constructor');
+   }
 
-  constructor() { }
-
+  /*------------------------------------------------------- */
+  /*                LIFE CYCLE HOOKS                        */
+  /*------------------------------------------------------- */
   ngOnInit(): void {
+    console.log('Binding -> ngOnInit');
+    this.refTimer =  setInterval( () => {
+      this.timer++
+      console.log(this.timer);
+    }, 1000);
+  };
+
+  ngDoCheck():void{
+    // console.log('Binding -> ngDoCheck');
   }
+
+  ngOnDestroy():void{
+    console.log('Binding -> ngOnDestry');
+    clearInterval(this.refTimer);
+  }
+/*---------------------------------------------------------- */
 
   modificar(e:any) {
     // console.log(e);
