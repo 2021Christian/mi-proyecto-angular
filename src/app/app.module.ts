@@ -19,6 +19,10 @@ import { ClienteService,
 import { UsuariosComponent } from './componentes/usuarios/usuarios.component';
 import { URL_USUARIOS } from './servicios/usuarios.service';
 import { NavbarComponent } from './componentes/navbar/navbar.component';
+import { MimoduloModule } from './mimodulo/mimodulo.module';
+import { Mimodulo2Module } from './mimodulo2/mimodulo2.module';
+import { PanelComponent } from './mimodulo/componentes/panel/panel.component';
+import { FamiliaComponent } from './mimodulo2/componentes/familia/familia.component';
 
 const routes:Routes = [
   // {path: '', component: ClienteComponent},
@@ -30,7 +34,9 @@ const routes:Routes = [
   {path: 'cliente', component: ClienteComponent},
   {path: 'cliente/:id', component: ClienteComponent},
   {path: 'cliente/:id/:cat', component: ClienteComponent},
-  {path: 'usuarios', component: UsuariosComponent}
+  {path: 'usuarios', component: UsuariosComponent},
+  {path: 'panel', component: PanelComponent},
+  {path: 'familia', component: FamiliaComponent},
 ];
 
 @NgModule({
@@ -50,7 +56,9 @@ const routes:Routes = [
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    RouterModule.forRoot(routes, {enableTracing: false} ) //enableTracing: true habilita el debug por consola
+    RouterModule.forRoot(routes, {enableTracing: false} ), //enableTracing: true habilita el debug por consola
+    MimoduloModule,
+    Mimodulo2Module
   ],
   // providers: [ClienteService],
   providers: [
